@@ -7,29 +7,15 @@ public class Main {
         if (ranges.length > 0) {
             System.out.print("[");
 
-            for (Range range: ranges) {
-                System.out.println(range + ", ");
+            for (int i = 0; i < ranges.length - 1; i++) {
+                System.out.print(ranges[i] + ", ");
             }
+            System.out.print(ranges[ranges.length - 1]);
 
-            System.out.println("]");
+            System.out.print("]");
         } else {
             System.out.println("[]");
         }
-       /* StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("[");
-
-        if (ranges.length > 0) {
-            for (Range range : ranges) {
-                stringBuilder.append(range).append(", ");
-            }
-
-            stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length());
-        }
-
-        stringBuilder.append("]");
-
-        System.out.print(stringBuilder); */
     }
 
     public static void main(String[] args) {
