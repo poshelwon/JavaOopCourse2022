@@ -4,7 +4,18 @@ import ru.javacourse.ryabushkin.range.Range;
 
 public class Main {
     public static void printRanges(Range[] ranges) {
-        StringBuilder stringBuilder = new StringBuilder();
+        if (ranges.length > 0) {
+            System.out.print("[");
+
+            for (Range range: ranges) {
+                System.out.println(range + ", ");
+            }
+
+            System.out.println("]");
+        } else {
+            System.out.println("[]");
+        }
+       /* StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("[");
 
@@ -18,7 +29,7 @@ public class Main {
 
         stringBuilder.append("]");
 
-        System.out.print(stringBuilder);
+        System.out.print(stringBuilder); */
     }
 
     public static void main(String[] args) {

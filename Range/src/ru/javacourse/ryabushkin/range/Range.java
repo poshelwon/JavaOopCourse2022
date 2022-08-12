@@ -25,7 +25,6 @@ public class Range {
         this.to = to;
     }
 
-
     public double getLength() {
         return to - from;
     }
