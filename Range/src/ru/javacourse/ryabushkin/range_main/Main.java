@@ -2,20 +2,16 @@ package ru.javacourse.ryabushkin.range_main;
 
 import ru.javacourse.ryabushkin.range.Range;
 
+import java.util.Arrays;
+
 public class Main {
     public static void printRanges(Range[] ranges) {
         if (ranges.length > 0) {
-            System.out.print("[");
-
-            for (int i = 0; i < ranges.length - 1; i++) {
-                System.out.print(ranges[i] + ", ");
-            }
-            System.out.print(ranges[ranges.length - 1]);
-
-            System.out.print("]");
-        } else {
-            System.out.println("[]");
+            System.out.print(Arrays.toString(ranges));
+            return;
         }
+
+        System.out.print("[]");
     }
 
     public static void main(String[] args) {
@@ -44,34 +40,34 @@ public class Main {
         double number = 5.14;
 
         if (range1.isInside(number) && range2.isInside(number)) {
-            System.out.println("Ð§Ð¸ÑÐ»Ð¾ " + number + " Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ ÐºÐ°Ð¶Ð´Ð¾Ð¼Ñƒ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ñƒ.");
+            System.out.println("×èñëî " + number + " ïðèíàäëåæèò êàæäîìó èíòåðâàëó.");
         } else if (range1.isInside(number)) {
-            System.out.println("Ð§Ð¸ÑÐ»Ð¾ " + number + " Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ Ð¿ÐµÑ€Ð²Ð¾Ð¼Ñƒ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ñƒ.");
+            System.out.println("×èñëî " + number + " ïðèíàäëåæèò ïåðâîìó èíòåðâàëó.");
         } else if (range2.isInside(number)) {
-            System.out.println("Ð§Ð¸ÑÐ»Ð¾ " + number + " Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¼Ñƒ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ñƒ.");
+            System.out.println("×èñëî " + number + " ïðèíàäëåæèò âòîðîìó èíòåðâàëó.");
         } else {
-            System.out.println("Ð§Ð¸ÑÐ»Ð¾ " + number + " Ð½Ðµ Ð¿Ñ€Ð¸Ð½Ð°Ð´Ð»ÐµÐ¶Ð¸Ñ‚ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð°Ð¼.");
+            System.out.println("×èñëî " + number + " íå ïðèíàäëåæèò èíòåðâàëàì.");
         }
 
-        System.out.println("Ð”Ð»Ð¸Ð½Ð° Ð¿ÐµÑ€Ð²Ð¾Ð³Ð¾ Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð° = " + range1.getLength());
+        System.out.println("Äëèíà ïåðâîãî èíòåðâàëà = " + range1.getLength());
 
         Range rangesIntersection = range1.getIntersection(range2);
 
         if (rangesIntersection == null) {
-            System.out.println("Ð˜Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ñ‹ Ð½Ðµ Ð¿ÐµÑ€ÐµÑÐµÐºÐ°ÑŽÑ‚ÑÑ.");
+            System.out.println("Èíòåðâàëû íå ïåðåñåêàþòñÿ.");
         } else {
-            System.out.println("Ð˜Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ñ‹ Ð¿ÐµÑ€ÐµÑÐµÐºÐ°ÑŽÑ‚ÑÑ Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ: " + rangesIntersection);
+            System.out.println("Èíòåðâàëû ïåðåñåêàþòñÿ â äèàïàçîíå: " + rangesIntersection);
         }
 
         Range[] rangesUnion = range1.getUnion(range2);
 
-        System.out.print("ÐžÐ±ÑŠÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ðµ Ð´Ð²ÑƒÑ… Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð¾Ð² Ñ€Ð°ÑÐ¿Ð¾Ð»Ð°Ð³Ð°ÐµÑ‚ÑÑ Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ: ");
+        System.out.print("Îáúåäèíåíèå äâóõ èíòåðâàëîâ ðàñïîëàãàåòñÿ â äèàïàçîíå: ");
         printRanges(rangesUnion);
         System.out.println();
 
         Range[] rangesDifference = range1.getDifference(range2);
 
-        System.out.print("Ð Ð°Ð·Ð½Ð¾ÑÑ‚ÑŒ Ð´Ð²ÑƒÑ… Ð¸Ð½Ñ‚ÐµÑ€Ð²Ð°Ð»Ð¾Ð² Ñ€Ð°ÑÐ¿Ð¾Ð»Ð°Ð³Ð°ÐµÑ‚ÑÑ Ð² Ð´Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½Ðµ: ");
+        System.out.print("Ðàçíîñòü äâóõ èíòåðâàëîâ ðàñïîëàãàåòñÿ â äèàïàçîíå: ");
         printRanges(rangesDifference);
         System.out.println();
     }
