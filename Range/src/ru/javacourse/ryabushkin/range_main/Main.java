@@ -6,12 +6,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void printRanges(Range[] ranges) {
-        if (ranges.length > 0) {
             System.out.print(Arrays.toString(ranges));
-            return;
-        }
-
-        System.out.print("[]");
     }
 
     public static void main(String[] args) {
