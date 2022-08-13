@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Main {
     private static Shape getMaxAreaShape(Shape[] shapes) {
         if (shapes.length == 0) {
-            throw new IllegalArgumentException("Array length must > 0. Length = " + shapes.length);
+            throw new IllegalArgumentException("Array length must be > 0. Length = " + shapes.length);
         }
 
         Arrays.sort(shapes, new AreaComparator());
@@ -17,7 +17,7 @@ public class Main {
 
     private static Shape getSecondMaxPerimeterShape(Shape[] shapes) {
         if (shapes.length < 2) {
-            throw new IllegalArgumentException("Array length must > 1. Length = " + shapes.length);
+            throw new IllegalArgumentException("Array length must be > 1. Length = " + shapes.length);
         }
 
         Arrays.sort(shapes, new PerimeterComparator());
