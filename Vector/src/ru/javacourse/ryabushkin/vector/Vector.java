@@ -116,10 +116,10 @@ public class Vector {
     }
 
     public void multiplyOnScalar(double scalar) {
-        int size = this.vectorComponents.length;
+        int size = vectorComponents.length;
 
         for (int i = 0; i < size; i++) {
-            this.vectorComponents[i] *= scalar;
+            vectorComponents[i] *= scalar;
         }
     }
 

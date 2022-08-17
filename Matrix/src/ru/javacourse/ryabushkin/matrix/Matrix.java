@@ -1,9 +1,11 @@
 package ru.javacourse.ryabushkin.matrix;
 
-public class Matrix {
-    /*  private Vector[] vectors;
+import ru.javacourse.ryabushkin.vector.Vector;
 
-    public Matrix(int n, int m) {
+public class Matrix{
+    private Vector[] vectors;
+
+    public Matrix(int n, int m){
         if (n <= 0 || m <= 0) {
             throw new IllegalArgumentException("N,m must >= 0. n = " + n + ". m= " + m);
         }
@@ -23,5 +25,5 @@ public class Matrix {
 
     public Matrix (Vector[] vector) {
 
-    } */
+    }
 }
