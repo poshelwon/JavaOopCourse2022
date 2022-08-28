@@ -44,7 +44,7 @@ public class Main {
         vector2.subtract(vector1);
         System.out.println("vector2 = " + vector2);
 
-        vector1.multiplyOnScalar(2);
+        vector1.multiplyByScalar(2);
         System.out.println("vector1 = " + vector1);
 
         vector2.reverse();

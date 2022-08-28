@@ -3,61 +3,57 @@ package ru.javacourse.ryabushkin.vector;
 import java.util.Arrays;
 
 public class Vector {
-    private double[] vectorComponents;
+    private double[] components;
 
     public Vector(int size) {
         if (size < 1) {
-            throw new IllegalArgumentException("Size must be > 0. size = " + size);
+            throw new IllegalArgumentException("Size must be > 0. Size = " + size);
         }
 
-        vectorComponents = new double[size];
+        components = new double[size];
     }
 
     public Vector(Vector vector) {
-        int size = vector.vectorComponents.length;
+        int size = vector.components.length;
 
-        this.vectorComponents = new double[size];
-
-        System.arraycopy(vector.vectorComponents, 0, this.vectorComponents, 0, size);
+        this.components = Arrays.copyOf(vector.components, size);
     }
 
-    public Vector(double[] vectorComponents) {
-        int size = vectorComponents.length;
+    public Vector(double[] components) {
+        int size = components.length;
 
         if (size < 1) {
-            throw new IllegalArgumentException("Size must be > 0. size = " + size);
+            throw new IllegalArgumentException("Size must be > 0. Size = " + size);
         }
 
-        this.vectorComponents = new double[size];
-
-        System.arraycopy(vectorComponents, 0, this.vectorComponents, 0, size);
+        this.components = Arrays.copyOf(components, size);
     }
 
     public Vector(int size, double[] vectorComponents) {
         if (size < 1 || vectorComponents.length < 1) {
             throw new IllegalArgumentException("Size and array length must be > 0. "
-                    + "size = " + size + ", array length = " + vectorComponents.length);
+                    + "Size = " + size + ", array length = " + vectorComponents.length);
         }
 
-        this.vectorComponents = new double[size];
+        this.components = new double[size];
 
-        System.arraycopy(vectorComponents, 0, this.vectorComponents, 0,
+        System.arraycopy(vectorComponents, 0, this.components, 0,
                 vectorComponents.length > size ? size : vectorComponents.length);
     }
 
     public double[] getVectorComponents() {
-        return vectorComponents;
+        return components;
     }
 
     public void setVectorComponents(double[] vectorComponents) {
-        this.vectorComponents = vectorComponents;
+        this.components = vectorComponents;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(("{"));
 
-        for (double component : vectorComponents) {
+        for (double component : components) {
             stringBuilder.append(component).append(", ");
         }
 
@@ -78,7 +74,7 @@ public class Vector {
         }
 
         Vector vector = (Vector) obj;
-        return Arrays.equals(this.vectorComponents, vector.vectorComponents);
+        return Arrays.equals(components, vector.components);
     }
 
     @Override
@@ -86,63 +82,63 @@ public class Vector {
         final int prime = 37;
         int hash = 1;
 
-        return prime * hash + Arrays.hashCode(vectorComponents);
+        return prime * hash + Arrays.hashCode(components);
     }
 
     public int getSize() {
-        return vectorComponents.length;
+        return components.length;
     }
 
     public void add(Vector vector) {
-        int maxSize = Math.max(this.vectorComponents.length, vector.vectorComponents.length);
+        int maxSize = Math.max(this.components.length, vector.components.length);
 
-        this.vectorComponents = new double[maxSize];
+        this.components = new double[maxSize];
 
         for (int i = 0; i < maxSize; i++) {
-            this.vectorComponents[i] = ((i < this.vectorComponents.length) ? this.vectorComponents[i] : 0)
-                    + ((i < vector.vectorComponents.length) ? vector.vectorComponents[i] : 0);
+            this.components[i] = ((i < this.components.length) ? this.components[i] : 0)
+                    + ((i < vector.components.length) ? vector.components[i] : 0);
         }
     }
 
     public void subtract(Vector vector) {
-        int maxSize = Math.max(this.vectorComponents.length, vector.vectorComponents.length);
+        int maxSize = Math.max(this.components.length, vector.components.length);
 
-        this.vectorComponents = new double[maxSize];
+        this.components = new double[maxSize];
 
         for (int i = 0; i < maxSize; i++) {
-            this.vectorComponents[i] = ((i < this.vectorComponents.length) ? this.vectorComponents[i] : 0)
-                    - ((i < vector.vectorComponents.length) ? vector.vectorComponents[i] : 0);
+            this.components[i] = ((i < this.components.length) ? this.components[i] : 0)
+                    - ((i < vector.components.length) ? vector.components[i] : 0);
         }
     }
 
-    public void multiplyOnScalar(double scalar) {
-        int size = vectorComponents.length;
+    public void multiplyByScalar(double scalar) {
+        int size = components.length;
 
         for (int i = 0; i < size; i++) {
-            vectorComponents[i] *= scalar;
+            components[i] *= scalar;
         }
     }
 
     public void reverse() {
-        this.multiplyOnScalar(-1);
+        multiplyByScalar(-1);
     }
 
     public double getLength() {
         double sum = 0;
 
-        for (double component : vectorComponents) {
+        for (double component : components) {
             sum += component * component;
         }
 
-        return Math.abs(Math.sqrt(sum));
+        return Math.sqrt(sum);
     }
 
     public void setComponent(int index, double number) {
-        vectorComponents[index] = number;
+        components[index] = number;
     }
 
     public double getComponent(int index) {
-        return vectorComponents[index];
+        return components[index];
     }
 
     public static Vector getSum(Vector vector1, Vector vector2) {
@@ -162,13 +158,13 @@ public class Vector {
     }
 
     public static double getScalarProduct(Vector vector1, Vector vector2) {
-        int maxSize = Math.max(vector1.vectorComponents.length, vector2.vectorComponents.length);
+        int maxSize = Math.max(vector1.components.length, vector2.components.length);
 
         double product = 0;
 
         for (int i = 0; i < maxSize; i++) {
-            product += ((i < vector1.vectorComponents.length) ? vector1.vectorComponents[i] : 0)
-                    * ((i < vector2.vectorComponents.length) ? vector2.vectorComponents[i] : 0);
+            product += ((i < vector1.components.length) ? vector1.components[i] : 0)
+                    * ((i < vector2.components.length) ? vector2.components[i] : 0);
         }
 
         return product;
