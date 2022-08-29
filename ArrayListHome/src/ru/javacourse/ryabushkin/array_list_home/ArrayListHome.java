@@ -76,17 +76,17 @@ public class ArrayListHome {
     }
 
     public static ArrayListHome scanFile() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("C:\\Users\\poshelwon\\IdeaProjects\\JavaOopCourse2022\\ArrayListHome\\numbers"));
+        try(Scanner scanner = new Scanner(new File("C:\\Users\\poshelwon\\IdeaProjects\\JavaOopCourse2022\\ArrayListHome\\numbers"));){
+            ArrayListHome list = new ArrayListHome();
 
-        ArrayListHome list = new ArrayListHome();
+            while (scanner.hasNext()) {
+                list.add(scanner.next());
+            }
 
-        while (scanner.hasNext()) {
-            list.add(scanner.next());
+            return list;
+        } catch (Exception e) {
+            throw new FileNotFoundException("File read error.");
         }
-
-        scanner.close();
-
-        return list;
     }
 
     public static ArrayListHome removeRepeats(ArrayListHome list) {
