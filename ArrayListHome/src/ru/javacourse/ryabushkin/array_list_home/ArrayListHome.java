@@ -13,22 +13,12 @@ public class ArrayListHome {
         return length;
     }
 
-    public boolean isEmpty() {
-        return length == 0;
-    }
-
     public Object get(int index) {
         if (index >= length) {
-            throw new IllegalArgumentException("Index be must < length. Length = " + length + ", index = " + index);
+            throw new IllegalArgumentException("Index must be < length. Length = " + length + ", index = " + index);
         }
-        return items[index];
-    }
 
-    public void set(int index, Object obj) {
-        if (index >= length) {
-            throw new IllegalArgumentException("Index be must < length. Length = " + length + ", index = " + index);
-        }
-        items[index] = obj;
+        return items[index];
     }
 
     public void add(Object obj) {
@@ -47,7 +37,7 @@ public class ArrayListHome {
 
     public void remove(int index) {
         if (index > length) {
-            throw new IllegalArgumentException("Index be must < length. Length = " + length + ", index = " + index);
+            throw new IllegalArgumentException("Index must be < length. Length = " + length + ", index = " + index);
         }
 
         System.arraycopy(items, index + 1, items, index, length - index - 1);
