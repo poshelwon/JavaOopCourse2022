@@ -76,7 +76,7 @@ public class ArrayListHome {
     }
 
     public static ArrayListHome scanFile() throws FileNotFoundException {
-        try(Scanner scanner = new Scanner(new File("C:\\Users\\poshelwon\\IdeaProjects\\JavaOopCourse2022\\ArrayListHome\\numbers"));){
+        try(Scanner scanner = new Scanner(new File("C:\\Users\\poshelwon\\IdeaProjects\\JavaOopCourse2022\\ArrayListHome\\numbers"))){
             ArrayListHome list = new ArrayListHome();
 
             while (scanner.hasNext()) {
