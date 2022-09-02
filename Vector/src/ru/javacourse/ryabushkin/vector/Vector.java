@@ -14,11 +14,11 @@ public class Vector {
     }
 
     public Vector(Vector vector) {
-        this.components = Arrays.copyOf(vector.components, vector.components.length);
+        components = Arrays.copyOf(vector.components, vector.components.length);
     }
 
     public Vector(double[] components) {
-        if (components.length < 1) {
+        if (components.length == 1) {
             throw new IllegalArgumentException("Size must be > 0. Size = " + components.length);
         }
 
@@ -74,11 +74,7 @@ public class Vector {
     }
 
     public void add(Vector vector) {
-        int maxSize = Math.max(components.length, vector.components.length);
-
-        if (maxSize > components.length) {
-            this.components = Arrays.copyOf(this.components, maxSize);
-        }
+        components = Arrays.copyOf(components, Math.max(components.length, vector.components.length));
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] += vector.components[i];
@@ -86,11 +82,7 @@ public class Vector {
     }
 
     public void subtract(Vector vector) {
-        int maxSize = Math.max(components.length, vector.components.length);
-
-        if (maxSize > components.length) {
-            this.components = Arrays.copyOf(this.components, maxSize);
-        }
+        components = Arrays.copyOf(components, Math.max(components.length, vector.components.length));
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] -= vector.components[i];
@@ -98,9 +90,7 @@ public class Vector {
     }
 
     public void multiplyByScalar(double scalar) {
-        int size = components.length;
-
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < components.length; i++) {
             components[i] *= scalar;
         }
     }
@@ -118,13 +108,12 @@ public class Vector {
 
         return Math.sqrt(sum);
     }
+    public double getComponent(int index) {
+        return components[index];
+    }
 
     public void setComponent(int index, double number) {
         components[index] = number;
-    }
-
-    public double getComponent(int index) {
-        return components[index];
     }
 
     public static Vector getSum(Vector vector1, Vector vector2) {
