@@ -18,7 +18,7 @@ public class Vector {
     }
 
     public Vector(double[] components) {
-        if (components.length == 1) {
+        if (components.length == 0) {
             throw new IllegalArgumentException("Size must be > 0. Size = " + components.length);
         }
 
@@ -74,7 +74,9 @@ public class Vector {
     }
 
     public void add(Vector vector) {
-        components = Arrays.copyOf(components, Math.max(components.length, vector.components.length));
+        if (components.length < vector.components.length) {
+            components = Arrays.copyOf(components, vector.components.length);
+        }
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] += vector.components[i];
@@ -82,7 +84,9 @@ public class Vector {
     }
 
     public void subtract(Vector vector) {
-        components = Arrays.copyOf(components, Math.max(components.length, vector.components.length));
+        if (components.length < vector.components.length) {
+            components = Arrays.copyOf(components, vector.components.length);
+        }
 
         for (int i = 0; i < vector.components.length; i++) {
             components[i] -= vector.components[i];
