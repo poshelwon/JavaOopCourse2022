@@ -1,44 +1,49 @@
 package ru.javacourse.ryabushkin.array_list_home_main;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.*;
 
 
-public class ArrayListHome<E> extends ArrayList<E> {
-    public ArrayListHome<E> removeEven() {
-        for (int i = 0; i < size(); i++) {
-            if (toInt(get(i)) % 2 == 0) {
-                remove(i);
+public class ArrayListHome {
+    public static ArrayList<Integer> removeEvenNumbers(ArrayList<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (toInt(list.get(i)) % 2 == 0) {
+                list.remove(i);
                 i--;
             }
         }
 
-        return this;
+        return list;
     }
 
-    public ArrayListHome<E> removeRepeat() {
-        HashSet<E> tempSet = new HashSet<>(this);
+    public static ArrayList<Integer> getUniqueValuesList(ArrayList<Integer> list) {
+        int length = list.size();
+        ArrayList<Integer> resultList = new ArrayList<>();
 
-        ArrayListHome<E> newList = new ArrayListHome<>();
-        newList.addAll(tempSet);
+        for (int i = 0; i < length; i++) {
+            boolean unique = true;
 
-        return newList;
-    }
-
-    public static ArrayListHome<Integer> scanFile(String path) throws FileNotFoundException {
-        ArrayListHome<Integer> list = new ArrayListHome<>();
-        String bufferLine;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            while ((bufferLine = reader.readLine()) != null) {
-                list.add(toInt(bufferLine));
+            for (int item : list) {
+                if (list.get(i).equals(list.get(item)) && unique) {
+                    unique = false;
+                    resultList.add(i);
+                }
             }
-        } catch (IOException e) {
-            throw new FileNotFoundException();
+        }
+
+        return resultList;
+    }
+
+    public static ArrayList<Integer> readFileNumbers(String path) throws IOException {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        String string;
+
+        while ((string = reader.readLine()) != null) {
+            list.add(toInt(string));
         }
 
         return list;
@@ -50,28 +55,28 @@ public class ArrayListHome<E> extends ArrayList<E> {
 
     public static void main(String[] args) {
         String filePath = "C:\\Users\\poshelwon\\IdeaProjects\\JavaOopCourse2022\\ArrayListHome\\numbers";
-        ArrayListHome<Integer> fileStringsList;
+        ArrayList<Integer> fileStringsList;
 
         try {
-            fileStringsList = scanFile(filePath);
+            fileStringsList = readFileNumbers(filePath);
 
             System.out.println("Исходный список: " + fileStringsList);
-            System.out.println("После удаления четных чисел: " + fileStringsList.removeEven());
-        } catch (FileNotFoundException e) {
+            System.out.println("После удаления четных чисел: " + removeEvenNumbers(fileStringsList));
+        } catch (IOException e) {
             System.out.println("Не удалось прочитать файл " + filePath);
         }
 
-        ArrayListHome<Integer> numbersList = new ArrayListHome<>();
-
-        numbersList.add(2);
-        numbersList.add(2);
-        numbersList.add(3);
-        numbersList.add(4);
-        numbersList.add(5);
-        numbersList.add(4);
+        ArrayList<Integer> numbersList = new ArrayList<>() {{
+            add(2);
+            add(2);
+            add(3);
+            add(4);
+            add(5);
+            add(4);
+        }};
 
         System.out.println("Назначенный список: " + numbersList);
 
-        System.out.println("Копия назначенного списка без дубликатов: " + numbersList.removeRepeat());
+        System.out.println("Копия назначенного списка без дубликатов: " + getUniqueValuesList(numbersList));
     }
 }
